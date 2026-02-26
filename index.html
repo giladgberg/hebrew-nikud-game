@@ -1421,15 +1421,9 @@ function deleteWordAudio(nikudStr) {
   localStorage.removeItem(audioStorageKey(nikudStr));
 }
 
-// Play word audio: use custom recording if available, otherwise TTS
+// Play word audio: use TTS with nikud text for best pronunciation
 function playWordAudio(text, speakText) {
-  const customAudio = getWordAudio(text);
-  if (customAudio) {
-    const audio = new Audio(customAudio);
-    audio.play().catch(() => {});
-    return;
-  }
-  speakHebrew(speakText || text);
+  speakHebrew(text);
 }
 
 // Recording state
